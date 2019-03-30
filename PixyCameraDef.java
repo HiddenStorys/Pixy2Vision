@@ -31,14 +31,11 @@ public class PixyCameraDef extends Subsystem {
     if (initFailure < 5) {
     //final int pixyStatus = pixyCam.init(PixyResult); 
     int count = pixyCam.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25); 
-    //  int refCount = pixyCam.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
-     // int ballCount = pixyCam.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25); 
-      //int bumperBlueCount = pixyCam.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG2, 25); 
+ 
       SmartDashboard.putNumber("COUNT", count); 
       if (count >= 0) {
+        //intializes a program that process the incoming data
         BallTrack.run(count); 
-        //BallFollow.run(); 
-
         SmartDashboard.putBoolean("PIXY RUNNING", true); 
        
         if (count == 0) 
@@ -46,9 +43,6 @@ public class PixyCameraDef extends Subsystem {
         else if (count > 0)
           SmartDashboard.putBoolean("BALL VISIBLE", true); 
 
-       // ReflectiveAlign.run(count); 
-       //RefAlign.run(refCount); 
-       //LineUp.run(); 
 
       } else {
         if(pixyCam.init(PixyResult) != Pixy2.PIXY_RESULT_OK) {
